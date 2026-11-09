@@ -29,7 +29,7 @@ SC.push({ id: 1, title: '3:00 AM', build() {
   const S = mkS({ amb: [L(0x1c2438).map(v => v * .9), L(0x0c0a10)], fog: { c: L(0x0a0a10), d: .02 }, ao: 4, exp: 1.25, audio: { amb: 'study', mus: 'dread' } });
   const K = R.study(S, { win: 'night' }); const c = mkChars(S);
   K.doorLight.i = 7; lanternDim(S);
-  const xs = { H: -1.5, R: -.5, J: .5, S: 1.5 };
+  const xs = { R: -1.5, H: -.5, J: .5, S: 1.5 };
   S.base = (T) => {
     const pulse = .85 + Math.sin(T * 2.2) * .12 + Math.sin(T * 5.3) * .05;
     K.leafMats.forEach(m => m.e = gold.map(v => v * 1.5 * pulse)); K.doorGlow.m.a = .55 * pulse; K.doorLight.k = pulse; K.rays.forEach((q, i) => q.m.a = .06 * pulse);
@@ -38,9 +38,9 @@ SC.push({ id: 1, title: '3:00 AM', build() {
   };
   S.beats = [
     beat({ a: [.3, 1.5, 5.0, 0, 1.75, -3, 42], b: [.1, 1.5, 2.8, 0, 1.7, -3, 38], e: 'io' }, [['T', 'The Bungalow Between Worlds|Season 1  ·  Chapter 01  ·  Ordinary Days'], ['N', '3:00 AM.']], null, 9, [[0, 'swell']]),
-    beat(() => [.9, 1.66, -1.7, -.5, 1.64, 1.0, 28], [['R', "Nobody say 'let's open it.'"]], () => { c.R.face('worry'); c.H.face('worry'); }),
+    beat(() => [.9, 1.66, -1.7, -.5, 1.64, 1.0, 28], [['H', "Nobody say 'let's open it.'"]], () => { c.R.face('worry'); c.H.face('worry'); }),
     beat(() => [-.8, 1.7, -1.5, 1.5, 1.66, 1.0, 26], [['S', "...Let's open it."]], () => { c.S.face('grin').pose('fist', 'hips'); }),
-    beat(() => [.6, 1.62, -1.4, -1.5, 1.6, 1.0, 28], [['H', 'Of course he did.']], () => { c.H.face('tired'); c.S.face('grin'); }, 0, [])
+    beat(() => [.6, 1.62, -1.4, -1.5, 1.6, 1.0, 28], [['R', 'Of course he did.']], () => { c.R.face('tired'); c.S.face('grin'); }, 0, [])
   ];
   return finish(S);
 } });
@@ -65,9 +65,9 @@ SC.push({ id: 2, title: 'Fort Kochi', build() {
     beat(CU(c.H, 1.3, -.3, -.02, 30), [['H', "Quiet? Finally, a place that isn't my house."]], () => { c.H.face('grin').pose('open', 'lap'); }),
     beat({ a: [.2, 1.4, 2.3, .2, 1.4, .5, 32], b: [.2, 1.45, 1.9, .2, 1.42, .5, 30] }, [['S', 'Booked. No refunds, by the way.']], () => { c.S.at(1.1, .55, -PI / 2 - .8).pose('phone').face('grin'); phoneAt(.2, 1.42, 1.1, 'booked'); }, 0, [[1.2, 'bell']]),
     beat({ a: [0, .5, 3.4, 0, 1.55, -.3, 52], b: [0, .6, 2.6, 0, 1.6, -.3, 48] }, [['A', '...BY THE WAY?!']], (u) => { const r = sm(.0, .5, u); ['S', 'R', 'J', 'H'].forEach(id => c[id].pose('high5').face('shock')); c.S.at(1.0, .3, -PI / 2 - .5); }, 0, [[.1, 'clap']]),
-    beat(CU(c.J, 1.4, .3, -.02, 30), [['J', "Last time you 'found a place', we slept at a bus stand."]], () => { c.J.face('tired').pose('cross'); }),
-    beat(CU(c.R, 1.3, -.3, -.02, 30), [['R', 'With a goat.']], () => { c.R.face('smug').pose('cross'); }),
-    beat(CU(c.H, 1.3, -.3, -.02, 30), [['H', 'The goat slept the best.']], () => { c.H.face('happy').pose('cup', 'lap'); }),
+    beat(CU(c.R, 1.3, -.3, -.02, 30), [['R', "Last time you 'found a place', we slept at a bus stand."]], () => { c.R.face('tired').pose('cross'); }),
+    beat(CU(c.H, 1.3, -.3, -.02, 30), [['H', 'With a goat.']], () => { c.H.face('smug').pose('open', 'lap'); }),
+    beat(CU(c.J, 1.4, .3, -.02, 30), [['J', 'The goat slept the best.']], () => { c.J.face('happy').pose('cup'); }),
     beat(CU(c.S, 1.7, -.25, -.1, 30), [['S', 'This time is different!']], () => { c.S.at(1.75, .35, -PI / 2).pose('pointUp', 'rest').face('grin'); })
   ];
   return finish(S);
@@ -90,7 +90,7 @@ SC.push({ id: 3, title: 'The Road to Wayanad', build() {
   const side = (id, lx) => (u, q, T) => { const o = c[id].o, p = jw(T, o.x + lx, 1.75, o.z + 1.9), l = jw(T, o.x, 1.72, o.z); return [...p, ...l, 30]; };
   S.beats = [
     beat((u, q, T) => { const p = pos(T); return [p.x - 15, p.y + 3.2, p.z - 14, p.x, p.y + 2.4, p.z + 6, 36]; }, [], null, 5.5),
-    beat(side('S', 1.6), [['S', 'Day one, Wayanad. Nothing can go wrong.']], () => { c.S.face('grin').pose('open', 'rest'); c.H.pose('phone'); }),
+    beat(side('H', -1.6), [['H', 'Day one, Wayanad. Nothing can go wrong.']], () => { c.S.face('grin').pose('open', 'rest'); c.H.pose('phone').face('grin'); }),
     beat(side('R', 1.6), [['R', "Da, don't say that."]], () => { c.R.face('worry'); }),
     beat((u, q, T) => [...jw(T, -.1, 1.75, 1.7), ...jw(T, -.45, 1.72, .55), 29], [['J', 'Too late. Now something will.']], () => { c.J.face('smug'); }),
     beat(side('S', 1.6), [['S', 'No negativity in my jeep!']], () => { c.S.face('grin').pose('peace' in {} ? 'peace' : 'pointUp', 'rest'); }),
@@ -163,7 +163,7 @@ SC.push({ id: 6, title: 'Four Groups of Four', build() {
   const wall = (id, x, z) => stand(id, x, z, -PI / 2);
   S.beats = [
     beat({ a: [-1, 1.5, 6.4, -5, 1.0, 2, 42], b: [-2.4, 1.4, 5.2, -5, 1.0, 2, 38] }, [['N', 'For a moment, it felt like any other trip.']], () => { sit('R', 'cup'); sit('J', 'cup'); sit('S', 'cup'); sit('H', 'lap'); c.S.face('happy'); c.R.face('smug'); c.J.face('happy'); c.H.face('grin'); }, 5.5),
-    beat({ a: [-6.8, 2.0, 2.6, -8.9, 2.2, 1.6, 30], b: [-6.8, 2.1, 1.0, -8.9, 2.2, -.2, 30] }, [['S', 'Look, old tourists!']], () => { wall('S', -7.4, 1.5); c.S.pose('point').face('grin'); sit('R', 'cup'); sit('J', 'cup'); sit('H', 'lap'); c.R.lookAt(-8.9, 1.6); }),
+    beat({ a: [-6.8, 2.0, 2.6, -8.9, 2.2, 1.6, 30], b: [-6.8, 2.1, 1.0, -8.9, 2.2, -.2, 30] }, [['H', 'Look, old tourists!']], () => { wall('H', -7.4, 1.5); c.H.pose('point').face('grin'); sit('R', 'cup'); sit('J', 'cup'); sit('S', 'cup'); c.R.lookAt(-8.9, 1.6); }),
     beat(CU(c.J, 1.5, .3, 0, 30), [['J', '2003, 2008, 2018. All groups of four.']], () => { wall('J', -7.0, 0.3); c.J.pose('chin').face('worry'); wall('S', -7.4, 1.5); c.S.pose('point'); }),
     beat(CU(c.S, 1.6, -.3, 0, 30), [['S', 'Repeat customers! Good sign!']], () => { wall('S', -7.4, 1.3); c.S.pose('open').face('grin'); wall('J', -7.0, .2); wall('R', -7.2, -.9); }),
     beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'Or nobody came back to pick up the photos.']], () => { wall('R', -7.2, -.9); c.R.pose('cross').face('smug'); }),
@@ -174,7 +174,7 @@ SC.push({ id: 6, title: 'Four Groups of Four', build() {
     beat({ a: [-6.6, 2.0, -3.4, -8.4, .9, -2.2, 34], b: [-8.1, 1.9, -2.2, -8.1, .95, -2.2, 30], e: 'io' }, [['N', 'The Watcher'], ['N', 'He is always there, in every visitor. He never harms. He only watches. But when the tree chooses, he comes down.', { d: 5.5 }]], (u) => { wall('H', -7.3, -2.2); c.H.pose('chin').face('worry'); wall('S', -7.4, -1.1); wall('R', -7.2, -.2); wall('J', -7.2, -3.2); const o = sm(.3, 1.2, u); K.drawer.p[0] = .45 + o * .45; K.bookOpen.vis = u > 1.4; }, 0),
     beat(CU(c.S, 1.6, -.3, 0, 30), [['S', "That's a... normal thing to write in a journal."]], () => { wall('S', -7.2, -1.1); c.S.pose('shrug').face('worry'); wall('J', -7.2, -3.0); wall('R', -7.0, -.2); wall('H', -7.3, -2.2); }),
     beat(CU(c.J, 1.4, .3, 0, 30), [['J', 'New rule. Nobody goes anywhere alone.']], () => { wall('J', -7.0, -.6); c.J.pose('open').face('angry'); wall('S', -7.4, .8); }),
-    beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'Even the bathroom?'], ['J', 'Especially the bathroom.']], () => { wall('R', -7.2, -.9); c.R.pose('shrug').face('worry'); }),
+    beat(CU(c.H, 1.4, .3, 0, 30), [['H', 'Even the bathroom?'], ['R', 'Especially the bathroom.']], () => { wall('H', -7.3, -2.2); c.H.pose('shrug').face('worry'); wall('R', -7.2, -.9); c.R.face('angry'); }),
     beat({ a: [-1.5, 2.0, 6.6, -5, 1.0, 1.8, 40], b: [-2.8, 1.6, 5.4, -5, .9, 1.8, 36] }, [['H', 'Goodnight, fifth friend.'], ['R', "Say that again and I'll push you out the window."]], () => { nightT = 0; const ex = (id, a) => { sit(id, 'lap'); c[id].lean(a); }; ex('R', -.35); ex('J', -.35); ex('S', -.3); ex('H', -.3); c.H.face('smug'); c.R.face('angry'); }, 0),
     beat({ a: [-4, 1.8, 3.4, -4.7, 1.2, 1.3, 34], b: [-4.4, 1.6, 2.6, -4.7, 1.2, 1.3, 30] }, [], () => { for (const id of 'SRJH') { sit(id, 'lap'); c[id].lean(-.3).face('shock'); } }, 2.6),
     beat({ a: [3.0, 1.9, -2.2, 3.0, 2.0, -6.5, 30], b: [3.0, 2.0, -3.8, 3.0, 2.0, -6.5, 24], e: 'io' }, [['X', 'BONG...'], ['X', 'BONG...'], ['X', 'BONG...']], () => { for (const id of 'SRJH') { sit(id, 'lap'); c[id].lean(-.3); } }, 0),
@@ -198,11 +198,11 @@ SC.push({ id: 7, title: 'Creak', build() {
   S.base = (T) => { lightsAnim(S, T); K.clock.set(3, 0); K.clock.swing(T, true); K.winMats.forEach(m => m.tex = TX.skyWindow('night')); const j = c.J.o; fl.p = [j.x, j.y + 1.3, j.z + .4]; S.time = T; fl.i = 5 + Math.sin(T * 3) * .2; };
   S.beats = [
     beat({ a: [6.4, .9, 5.4, 7.2, 3.2, -4.6, 44], b: [6.6, 1.0, 4.2, 7.2, 3.4, -4.6, 40] }, [['X', 'CREAK...'], ['X', 'CREAK...']], (u) => { for (const id of 'SRJH') { c[id].hide(); } K.watchN.vis = u > 1.4 && u < 3.2 || u > 3.8; fl.i = 0; }, 4.6, [[0, 'creak'], [1.9, 'creak']]),
-    beat({ a: [-1.4, 1.7, 6.4, -4.8, 1.1, 1.6, 40], b: [-2.2, 1.6, 5.6, -4.8, 1.1, 1.6, 36] }, [['S', "It's coming from upstairs."]], () => { sit('R', 'lap'); sit('S', 'lap'); sit('H', 'lap'); c.S.lean(.2).face('worry'); c.R.lean(.2).face('shock'); c.H.lean(.15).face('shock'); stand('J', -3.4, 2.4, -PI / 2); c.J.pose('light').face('worry'); c.J.lookAt(7, -3); }),
+    beat({ a: [-1.4, 1.7, 6.4, -4.8, 1.1, 1.6, 40], b: [-2.2, 1.6, 5.6, -4.8, 1.1, 1.6, 36] }, [['J', "It's coming from upstairs."]], () => { sit('R', 'lap'); sit('S', 'lap'); sit('H', 'lap'); c.S.lean(.2).face('worry'); c.R.lean(.2).face('shock'); c.H.lean(.15).face('shock'); stand('J', -3.4, 2.4, -PI / 2); c.J.pose('light').face('worry'); c.J.lookAt(7, -3); }),
     beat({ a: [-3.4, 1.7, 5.4, -4.6, 1.5, .8, 34], b: [-3.6, 1.7, 4.4, -4.6, 1.5, .8, 30] }, [['S', "I'll go first. I'm the leader."]], () => { stand('S', -4.6, .8, 0); c.S.pose('hips').face('grin'); stand('J', -3.4, 2.4, -PI / 2); c.J.pose('light'); stand('R', -6.1, 2.4, PI / 2).pose('cross'); c.R.face('shock'); sit('H', 'camera'); c.H.face('shock'); }),
     beat(CU(c.S, 1.6, -.35, 0, 30), [['S', '...Actually, Hashir has the camera. Cameras go first.']], () => { stand('S', -4.6, .8, 0); c.S.pose('hands').face('worry'); stand('J', -3.4, 2.4, -PI / 2); c.J.pose('light'); stand('H', -4.2, .3, 0); c.H.pose('camera').face('shock'); }),
     beat(CU(c.H, 1.4, .3, 0, 30), [['H', 'Since when?!']], () => { stand('H', -4.2, .3, 0); c.H.pose('camera').face('angry'); stand('S', -3.6, 1.0, 0); c.S.pose('hands'); stand('J', -3.4, 2.4, -PI / 2); c.J.pose('light'); }),
-    beat({ a: [5.0, .7, 5.8, 7.2, 1.6, 0, 52], b: [5.2, .9, 4.6, 7.2, 2.6, -3.4, 44], e: 'io' }, [['H', 'I hate every single one of you.']], (u, p) => { const q = sm(0, 1, p); stairP(lerp(.0, .45, q), 'H', 0); stairP(lerp(-.13, .32, q), 'J', -.7); stairP(lerp(-.26, .19, q), 'S', .7); stairP(lerp(-.4, .05, q), 'R', 0); c.H.pose('camera').face('angry'); c.S.face('worry'); c.J.pose('light'); fl.p = [7, c.J.o.y + 1.3, c.J.o.z - .4]; }, 5.5, [[.6, 'creak']])
+    beat({ a: [5.0, .7, 5.8, 7.2, 1.6, 0, 52], b: [5.2, .9, 4.6, 7.2, 2.6, -3.4, 44], e: 'io' }, [['R', 'I hate every single one of you.']], (u, p) => { const q = sm(0, 1, p); stairP(lerp(.0, .45, q), 'H', 0); stairP(lerp(-.13, .32, q), 'J', -.7); stairP(lerp(-.26, .19, q), 'S', .7); stairP(lerp(-.4, .05, q), 'R', 0); c.H.pose('camera'); c.R.face('angry'); c.S.face('worry'); c.J.pose('light'); fl.p = [7, c.J.o.y + 1.3, c.J.o.z - .4]; }, 5.5, [[.6, 'creak']])
   ];
   return finish(S);
 } });
@@ -242,12 +242,12 @@ SC.push({ id: 9, title: 'Still Hot', build() {
     beat(CU(c.H, 1.4, .3, 0, 30), [['H', 'Ayyo.']], () => { around(); c.H.face('shock').pose('hands'); }),
     beat({ a: [.4, 1.75, 1.8, 3.9, 1.85, .5, 36], b: [1.2, 1.75, 1.5, 3.9, 1.85, .5, 30], e: 'io' }, [['P', '', { d: 3.8 }]], (u) => { around(); W_.vis = u > .8; for (const id in pos) c[id].lookAt(3.7, .5); }, 3.8, [[.8, 'swell']]),
     beat([-1.5, 1.45, 1.4, -1.5, 1.4, -.6, 26], [], () => { around(); for (const id in pos) c[id].hide(); K.polaroid.vis = true; K.polaroid.p = [-1.5, 1.45, .55]; K.polaroid.r = [0, 0, .05]; K.polaroid.s = [.5, .5, 1]; K.polaroid.m.mode = 2; K.polaroid.m.nofog = true; }, 3.2),
-    beat(CU(c.J, 1.4, .3, 0, 30), [['J', 'Da. This is us. When we arrived.']], () => { around(); c.J.pose('chin').face('worry'); }),
-    beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'We were alone at 4:12.'], ['H', 'Someone took this from upstairs.']], () => { around(); c.R.pose('cross').face('shock'); c.H.face('shock'); }),
+    beat(CU(c.H, 1.4, .3, 0, 30), [['H', 'Da. This is us. When we arrived.']], () => { around(); c.H.pose('chin').face('worry'); }),
+    beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'We were alone at 4:12.'], ['J', 'Someone took this from upstairs.']], () => { around(); c.R.pose('cross').face('shock'); c.J.face('shock'); }),
     beat(CU(c.S, 1.6, -.3, 0, 30), [['S', "In my defence, it did say 'Quiet.'"], ['R', 'Stany. Stop.']], () => { around(); c.S.pose('hands').face('worry'); }),
     beat({ a: [-1.75, 1.55, -.75, -1.75, .84, -1.0, 34], b: [-1.75, 1.2, -1.05, -1.75, .84, -1.0, 22], e: 'io' }, [['N', 'You found it.  At the third hour, the next door opens.  Do not be late.  — The Watcher', { d: 6 }]], () => { around(); K.polaroid.vis = false; }, 0),
     beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'Late for WHAT?']], () => { around(); c.R.pose('hands').face('angry'); }),
-    beat(CU(c.S, 1.6, -.3, 0, 30), [['S', "I'm leaving. Taking the jeep. Taking nobody."]], () => { around(); c.S.pose('hands').face('shock'); c.S.o.ry = PI * .6; })
+    beat(CU(c.H, 1.4, .3, 0, 30), [['H', "I'm leaving. Taking the jeep. Taking nobody."]], () => { around(); c.H.pose('hands').face('shock'); })
   ];
   return finish(S);
 } });
@@ -286,17 +286,17 @@ SC.push({ id: 11, title: 'The Third Hour', build() {
   const floorRow = () => { row([-1.5, -.5, .5, 1.5], -1.0, 0); for (const id of 'SRJH') c[id].floor().pose('lap'); c.S.pose('cross'); c.H.pose('phone'); };
   S.beats = [
     beat({ a: [1.8, 1.8, -.2, 0, 1.5, -4.9, 40], b: [2.2, 1.7, -1.9, 0, 1.4, -4.9, 36] }, [['S', "It's not locked. It just... doesn't open."]], () => { glowAmt = 0; open = 0; c.S.at(-.15, -4.3, PI).pose('grab').nopack().lean(.3).face('worry'); c.R.at(1.0, -2.6, PI).nopack().pose('cross').face('worry'); c.J.at(-1.2, -2.8, PI).nopack().pose('down').face('worry'); c.H.at(1.7, -3.2, PI).nopack().pose('camera').face('worry'); }),
-    beat({ a: [-.6, 1.7, -1.4, -.1, 1.3, -4.9, 36], b: [-.6, 1.7, -1.5, 0, 1.3, -4.9, 36] }, [['H', 'OW! Who builds a door this strong?!']], (u) => { glowAmt = 0; c.S.at(-.15, -4.3, PI).pose('grab').nopack().lean(.3); const r = sm(0, .4, u); c.H.at(.5 + r * 1.2, -4.4 + r * 1.6, PI - r * 1.6, 0).nopack().pose('hands').lean(-.5 * r).face('shock'); c.R.at(1.0, -2.6, PI).nopack().pose('cross'); c.J.at(-1.2, -2.8, PI).nopack().pose('down'); }),
+    beat({ a: [-.6, 1.7, -1.4, -.1, 1.3, -4.9, 36], b: [-.6, 1.7, -1.5, 0, 1.3, -4.9, 36] }, [['R', 'OW! Who builds a door this strong?!']], (u) => { glowAmt = 0; c.S.at(-.15, -4.3, PI).pose('grab').nopack().lean(.3); const r = sm(0, .4, u); c.R.at(.5 + r * 1.2, -4.4 + r * 1.6, PI - r * 1.6, 0).nopack().pose('hands').lean(-.5 * r).face('shock'); c.H.at(1.0, -2.6, PI).nopack().pose('cross'); c.J.at(-1.2, -2.8, PI).nopack().pose('down'); }),
     beat(CU(c.J, 1.4, .3, 0, 30), [['J', '2:56. Four minutes.']], () => { glowAmt = 0; c.J.at(-1.0, -2.2, 0).nopack().pose('hold').face('worry'); c.S.at(-.15, -4.3, PI).nopack().pose('grab').lean(.3); c.H.at(1.7, -3.0, PI).nopack().pose('hands'); c.R.at(.8, -2.5, 0).nopack().pose('cross'); }),
     beat({ a: [0, 1.0, 3.2, 0, 1.0, -1, 44], b: [0, 1.1, 2.6, 0, 1.0, -1, 40] }, [['H', "If I die, upload this. Title: 'Four Idiots in Wayanad.'"]], () => { floorRow(); glowAmt = 0; c.H.face('worry').pose('phone'); }),
-    beat(CU(c.R, 1.4, .3, 0, 30), [['R', "I'm not an idiot."]], () => { floorRow(); c.R.face('angry').pose('cross'); glowAmt = 0; }),
-    beat(CU(c.J, 1.4, .3, 0, 30), [['J', 'You booked it.']], () => { floorRow(); c.J.face('smug').pose('cross'); glowAmt = 0; }),
+    beat(CU(c.S, 1.6, -.3, 0, 30), [['S', "I'm not an idiot."]], () => { floorRow(); c.S.face('angry').pose('cross'); glowAmt = 0; }),
+    beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'You booked it.']], () => { floorRow(); c.R.face('smug').pose('cross'); glowAmt = 0; }),
     beat({ a: [-1.2, 1.7, .6, -3.2, 2.0, -4.25, 34], b: [-2.4, 1.9, -1.0, -3.2, 2.1, -4.25, 26], e: 'io' }, [['X', 'DONG!']], () => { floorRow(); glowAmt = 0; for (const id of 'SRJH') c[id].face('shock'); }, 2.6, []),
     beat({ a: [0, 1.5, 3.8, 0, 1.9, -4.9, 42], b: [0, 1.7, 1.4, 0, 1.9, -4.9, 36], e: 'io' }, [['X', 'DONG! DONG!']], (u, p) => { floorRow(); glowAmt = sm(0, 3.2, u); for (const id of 'SRJH') { c[id].face('shock'); c[id].lookAt(0, -5); } }, 4.2, [[1.6, 'dong']]),
-    beat({ a: [-.4, 1.7, -1.7, .3, 1.45, -4.9, 32], b: [-.2, 1.7, -2.5, .1, 1.45, -4.9, 30] }, [['S', 'Nobody touch it.']], () => { glowAmt = 1; floorRow(); c.S.at(-.3, -3.2, PI).nopack().pose('grab').lean(.2).face('worry'); c.H.at(.7, -3.4, PI).nopack().pose('grab').face('shock'); c.R.at(1.6, -2.6, PI).nopack().pose('hands'); c.J.at(-1.4, -2.7, PI).nopack().pose('hands'); }),
-    beat(CU(c.H, 1.4, .3, 0, 30), [['H', 'Da! You just said nobody!']], () => { glowAmt = 1; c.H.at(.7, -3.4, PI - .5).nopack().pose('grab').face('shock'); c.S.at(-.1, -3.2, PI).nopack().pose('grab'); c.R.at(1.6, -2.6, PI).nopack(); c.J.at(-1.4, -2.7, PI).nopack(); }),
-    beat({ a: [0, 1.5, -2.2, 0, 1.2, -4.9, 20], b: [0, 1.4, -3.4, 0, 1.2, -4.9, 16], e: 'io' }, [['R', 'Guys... it\'s turning.'], ['J', 'Not from our side.']], (u) => { glowAmt = 1; c.S.at(-1.2, -2.4, PI).nopack().pose('hands'); c.H.at(1.2, -2.5, PI).nopack().pose('hands'); c.R.at(-.5, -2.6, PI).nopack().pose('point').face('shock'); c.J.at(.5, -2.6, PI).nopack().pose('hands').face('shock'); }, 0, [[.2, 'door']]),
-    beat(CU(c.H, 1.4, .3, 0, 30), [['H', '...Stany.'], ['S', 'Yes?'], ['H', 'Next time, we read the reviews.'], ['S', '...Okay.']], () => { glowAmt = 1; c.H.at(.7, -2.5, PI).nopack().pose('hands').face('worry'); c.S.at(-.4, -2.5, PI).nopack().pose('hands').face('worry'); c.R.at(1.5, -2.4, PI).nopack(); c.J.at(-1.3, -2.4, PI).nopack(); c.H.lookAt(-.4, -2.5); c.S.lookAt(.7, -2.5); }),
+    beat({ a: [-.4, 1.7, -1.7, .3, 1.45, -4.9, 32], b: [-.2, 1.7, -2.5, .1, 1.45, -4.9, 30] }, [['S', 'Nobody touch it.']], () => { glowAmt = 1; floorRow(); c.S.at(-.3, -3.2, PI).nopack().pose('grab').lean(.2).face('worry'); c.R.at(.7, -3.4, PI).nopack().pose('grab').face('shock'); c.H.at(1.6, -2.6, PI).nopack().pose('hands'); c.J.at(-1.4, -2.7, PI).nopack().pose('hands'); }),
+    beat(CU(c.R, 1.4, .3, 0, 30), [['R', 'Da! You just said nobody!']], () => { glowAmt = 1; c.R.at(.7, -3.4, PI - .5).nopack().pose('grab').face('shock'); c.S.at(-.1, -3.2, PI).nopack().pose('grab'); c.H.at(1.6, -2.6, PI).nopack(); c.J.at(-1.4, -2.7, PI).nopack(); }),
+    beat({ a: [0, 1.5, -2.2, 0, 1.2, -4.9, 20], b: [0, 1.4, -3.4, 0, 1.2, -4.9, 16], e: 'io' }, [['H', 'Guys... it\'s turning.'], ['J', 'Not from our side.']], (u) => { glowAmt = 1; c.S.at(-1.2, -2.4, PI).nopack().pose('hands'); c.R.at(1.2, -2.5, PI).nopack().pose('hands'); c.H.at(-.5, -2.6, PI).nopack().pose('point').face('shock'); c.J.at(.5, -2.6, PI).nopack().pose('hands').face('shock'); }, 0, [[.2, 'door']]),
+    beat(CU(c.R, 1.4, .3, 0, 30), [['R', '...Stany.'], ['S', 'Yes?'], ['R', 'Next time, we read the reviews.'], ['S', '...Okay.']], () => { glowAmt = 1; c.R.at(.7, -2.5, PI).nopack().pose('hands').face('worry'); c.S.at(-.4, -2.5, PI).nopack().pose('hands').face('worry'); c.H.at(1.5, -2.4, PI).nopack(); c.J.at(-1.3, -2.4, PI).nopack(); c.R.lookAt(-.4, -2.5); c.S.lookAt(.7, -2.5); }),
     beat({ a: [0, 1.5, 1.6, 0, 1.7, -4.9, 46], b: [0, 1.5, 1.0, 0, 1.7, -4.9, 38], e: 'io' }, [], (u, p) => { glowAmt = 1; open = sm(.2, 4.0, u); row([-1.5, -.5, .5, 1.5], -2.2, PI); for (const id of 'SRJH') { c[id].pose('down').face('shock'); c[id].lookAt(0, -5); } c.R.pose('hands'); c.H.pose('camera'); }, 9, [[.3, 'boom']])
   ];
   return finish(S);
