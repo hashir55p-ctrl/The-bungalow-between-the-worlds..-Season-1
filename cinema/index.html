@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Bungalow Between Worlds · 3D Cinema · Chapter 01</title>
+<meta name="description" content="A real-time 3D cinema of Chapter 01 'Ordinary Days' from The Bungalow Between Worlds.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <canvas id="c"></canvas>
+  <div id="vig"></div>
+  <div id="fade"></div>
+  <div id="nar"></div>
+  <div id="card"></div>
+  <div id="ttl"></div>
+  <div id="fx"></div>
+  <div id="sub"></div>
+  <div id="end"><div class="parch"><h2>THE DOOR IS OPENING...</h2></div><p>END OF CHAPTER 01 · Ordinary Days</p><button id="replay">↻ Watch again</button></div>
+</div>
+<div id="ui">
+  <div id="prog"><div id="bar"></div></div>
+  <div class="row">
+    <button id="prev" title="Previous scene (←)">⏮</button>
+    <button id="play" title="Play / pause (Space)">▶</button>
+    <button id="next" title="Next scene (→)">⏭</button>
+    <span id="stitle"></span>
+    <span id="chips"></span>
+    <button id="mute" title="Sound (M)">🔊</button>
+    <button id="fs" title="Fullscreen (F)">⛶</button>
+  </div>
+</div>
+<div id="intro">
+  <div class="card">
+    <p class="kicker">Season 1 · Chapter 01</p>
+    <h1>The Bungalow<br>Between Worlds</h1>
+    <h3>Ordinary Days</h3>
+    <p class="blurb">Four ordinary friends. One suspiciously cheap bungalow. A clock that stopped at three.</p>
+    <button id="begin">▶ Begin the chapter</button>
+    <p class="hint">Real-time 3D · sound on · Space = pause · ← → = scenes · F = fullscreen</p>
+  </div>
+</div>
+<script src="engine.js"></script>
+<script src="world.js"></script>
+<script src="chars.js"></script>
+<script src="rooms.js"></script>
+<script src="audio.js"></script>
+<script src="story.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

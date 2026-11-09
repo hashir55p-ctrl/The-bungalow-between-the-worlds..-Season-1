@@ -209,3 +209,7 @@ End card (added in edit): "THE DOOR IS OPENING..." / "END OF CHAPTER 01 - Ordina
 
 - `scenes.html` is the 3D viewer (20 scenes, 10 s each). Open it in a browser, or use the published page.
 - `stills/` has a start and end frame for every scene (about 1240x700, no text). Use them as start/end frames in Google Flow.
+
+## 3D cinema (Chapter 1)
+
+A watchable real-time 3D version of Chapter 01 "Ordinary Days" lives in [`cinema/`](cinema/). It follows the 20 manhwa pages with every line of dialogue, camera work and sound, and doubles as a source of camera angles and blocking for the Flow scenes above. Open `cinema/index.html` or see [`cinema/README.md`](cinema/README.md).
