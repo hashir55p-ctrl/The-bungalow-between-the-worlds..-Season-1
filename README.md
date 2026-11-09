@@ -204,3 +204,8 @@ Jesvin: "Not from our side."
 Renjith: "...Someone's opening it."
 End card (added in edit): "THE DOOR IS OPENING..." / "END OF CHAPTER 01 - Ordinary Days".
 ```
+
+## 3D scene viewer and stills
+
+- `scenes.html` is the 3D viewer (20 scenes, 10 s each). Open it in a browser, or use the published page.
+- `stills/` has a start and end frame for every scene (1280x720, no text). Use them as start/end frames in Google Flow.
